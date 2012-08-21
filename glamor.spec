@@ -7,7 +7,7 @@ Release:	1
 License:	MIT
 Group:		Libraries
 Source0:	http://cgit.freedesktop.org/xorg/driver/glamor/snapshot/%{name}-%{version}.tar.gz
-# Source0-md5:	6b570d9e5ce531a8a6329bb4c6de0b1b
+# Source0-md5:	7365d6618fb62f11b4cf69ef14cf818e
 Patch0:		%{name}-pc.patch
 URL:		http://www.freedesktop.org/wiki/Software/Glamor
 BuildRequires:	Mesa-libEGL-devel
