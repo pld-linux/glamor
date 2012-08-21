@@ -1,12 +1,13 @@
+# NOTE: glamor-0.5 and glamor-egl-0.5.0 is the same package
 Summary:	Open-source X.org graphics common driver based on GL library
 Summary(pl.UTF-8):	Ogólny sterownik graficzny X.org o otwartych źródłach, oparty na bibliotece GL
 Name:		glamor
-Version:	0.4.1
+Version:	0.5
 Release:	1
 License:	MIT
 Group:		Libraries
 Source0:	http://cgit.freedesktop.org/xorg/driver/glamor/snapshot/%{name}-%{version}.tar.gz
-# Source0-md5:	073652c66d89576bdf22543fdcbf49b3
+# Source0-md5:	6b570d9e5ce531a8a6329bb4c6de0b1b
 Patch0:		%{name}-pc.patch
 URL:		http://www.freedesktop.org/wiki/Software/Glamor
 BuildRequires:	Mesa-libEGL-devel
