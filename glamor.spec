@@ -1,4 +1,4 @@
-# NOTE: glamor-0.5 and glamor-egl-0.5.0 is the same package
+# NOTE: glamor-0.5 and glamor-egl-0.5.0 are the same package
 Summary:	Open-source X.org graphics common driver based on GL library
 Summary(pl.UTF-8):	Ogólny sterownik graficzny X.org o otwartych źródłach, oparty na bibliotece GL
 Name:		glamor
