@@ -7,7 +7,8 @@ Version:	0.5
 Release:	1
 License:	MIT
 Group:		Libraries
-Source0:	http://cgit.freedesktop.org/xorg/driver/glamor/snapshot/%{name}-%{version}.tar.gz
+#Source0:	http://cgit.freedesktop.org/xorg/driver/glamor/snapshot/%{name}-%{version}.tar.gz
+Source0:	%{name}-%{version}.tar.gz
 # Source0-md5:	846e61d731f8d6d456c3b15c627fd762
 Patch0:		%{name}-pc.patch
 URL:		http://www.freedesktop.org/wiki/Software/Glamor
