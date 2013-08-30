@@ -1,0 +1,24 @@
+--- glamor-egl-0.5.1/src/Makefile.am.orig	2013-08-26 08:57:47.000000000 +0200
++++ glamor-egl-0.5.1/src/Makefile.am	2013-08-30 16:53:47.195169407 +0200
+@@ -5,9 +5,9 @@
+ SOLARIS_ASM_CFLAGS=""
+ 
+ if GLAMOR_GLES2
+-libglamor_la_LIBADD = $(GLESV2_LIBS)
++libglamor_la_LIBADD = $(GLESV2_LIBS) $(LIBPIXMAN_LIBS)
+ else
+-libglamor_la_LIBADD = $(GL_LIBS)
++libglamor_la_LIBADD = $(GL_LIBS) $(LIBPIXMAN_LIBS)
+ endif
+ 
+ AM_CPPFLAGS = \
+--- glamor-egl-0.5.1/configure.ac.orig	2013-08-26 09:01:50.000000000 +0200
++++ glamor-egl-0.5.1/configure.ac	2013-08-30 16:53:25.768503636 +0200
+@@ -116,6 +116,7 @@
+ AC_SUBST([GLAMOR_GL_CFLAGS])
+ 
+ PKG_CHECK_MODULES([LIBDRM], $LIBDRM)
++PKG_CHECK_MODULES([LIBPIXMAN], $LIBPIXMAN)
+ PKG_CHECK_MODULES(EGL, $LIBEGL, [EGL=yes], [EGL=no])
+ AM_CONDITIONAL([EGL], [test "x$EGL" = xyes])
+ 

@@ -3,13 +3,15 @@
 Summary:	Open-source X.org graphics common driver based on GL library
 Summary(pl.UTF-8):	Ogólny sterownik graficzny X.org o otwartych źródłach, oparty na bibliotece GL
 Name:		glamor
-Version:	0.5
+Version:	0.5.1
 Release:	1
 License:	MIT
 Group:		Libraries
-Source0:	http://cgit.freedesktop.org/xorg/driver/glamor/snapshot/%{name}-%{version}.tar.gz
-# Source0-md5:	846e61d731f8d6d456c3b15c627fd762
+#Source0:	http://cgit.freedesktop.org/xorg/driver/glamor/snapshot/%{name}-%{version}.tar.gz
+Source0:	http://xorg.freedesktop.org/releases/individual/driver/%{name}-egl-%{version}.tar.bz2
+# Source0-md5:	025c4e64dbc22009a8576f76a6f6eb7c
 Patch0:		%{name}-pc.patch
+Patch1:		%{name}-link.patch
 URL:		http://www.freedesktop.org/wiki/Software/Glamor
 BuildRequires:	Mesa-libEGL-devel
 BuildRequires:	Mesa-libGL-devel >= 7.1.0
@@ -28,6 +30,9 @@ Requires:	libdrm >= 2.4.23
 Requires:	pixman >= 0.21.8
 Requires:	xorg-xserver-server >= 1.10
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# relies on symbols from X server
+%define		skip_post_check_so	libglamor.so.*
 
 %description
 The glamor module is an open-source 2D graphics common driver for the
@@ -75,8 +80,9 @@ Header file for Glamor modules API.
 Plik nagłówkowy API modułów Glamor.
 
 %prep
-%setup -q
+%setup -q -n %{name}-egl-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -85,7 +91,6 @@ Plik nagłówkowy API modułów Glamor.
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-static \
 	--enable-glx-tls
 %{__make}
 
@@ -95,20 +100,26 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/xorg/modules/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libglamor.la \
+	$RPM_BUILD_ROOT%{_libdir}/xorg/modules/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
-%doc COPYING README ReleaseNote
-%attr(755,root,root) %{_libdir}/xorg/modules/libglamor.so
+%doc COPYING ChangeLog README
+%attr(755,root,root) %{_libdir}/libglamor.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libglamor.so.0
 %attr(755,root,root) %{_libdir}/xorg/modules/libglamoregl.so
 %{_datadir}/X11/xorg.conf.d/glamor.conf
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libglamor.so
 %{_includedir}/xorg/glamor.h
 %{_pkgconfigdir}/glamor.pc
 %{_pkgconfigdir}/glamor-egl.pc

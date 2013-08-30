@@ -7,12 +7,3 @@
 -Cflags: -I${sdkdir} -L${moduledir} ${GLAMOR_GL_CFLAGS} ${GLAMOR_EGL_CFLAGS}
 +Cflags: -I${sdkdir} ${GLAMOR_GL_CFLAGS} ${GLAMOR_EGL_CFLAGS}
  
---- glamor-0.4.1/glamor.pc.in.orig	2012-04-28 12:28:33.000000000 +0200
-+++ glamor-0.4.1/glamor.pc.in	2012-05-08 21:23:23.999568920 +0200
-@@ -9,5 +9,5 @@
- Name: glamor
- Description: X.Org glamor common library.
- Version: @PACKAGE_VERSION@
--Cflags: -I${sdkdir} -L${moduledir} -lglamor ${GLAMOR_GL_CFLAGS}
-+Cflags: -I${sdkdir} ${GLAMOR_GL_CFLAGS}
- 
