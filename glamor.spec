@@ -25,6 +25,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	xorg-proto-dri2proto-devel >= 2.6
 BuildRequires:	xorg-util-util-macros >= 1.8
 BuildRequires:	xorg-xserver-server-devel >= 1.10
+Requires:	%{name}-libs = %{version}-%{release}
 Requires:	Mesa-libGL >= 7.1.0
 Requires:	libdrm >= 2.4.23
 Requires:	pixman >= 0.21.8
@@ -65,12 +66,28 @@ Jest w pewien sposób niezależna od sprzętu. Może być blokiem tworzącym
 dowolny sterownik DDX serwera X. Ten pakiet może obsłużyć dowolną
 platformę, mającą biblioteki OpenGL, gbm i drm.
 
+%package libs
+Summary:	Glamor shared library
+Summary(pl.UTF-8):	Biblioteka współdzielona Glamor
+Group:		Libraries
+Requires:	Mesa-libGL >= 7.1.0
+Requires:	pixman >= 0.21.8
+
+%description libs
+Glamor shared library.
+
+%description libs -l pl.UTF-8
+Biblioteka współdzielona Glamor.
+
 %package devel
 Summary:	Header file for Glamor modules API
 Summary(pl.UTF-8):	Plik nagłówkowy API modułów Glamor
 Group:		Development/Libraries
+Requires:	%{name}-libs = %{version}-%{release}
 Requires:	Mesa-libEGL-devel
+Requires:	Mesa-libGL-devel >= 7.1.0
 Requires:	libdrm-devel >= 2.4.23
+Requires:	pixman-devel >= 0.21.8
 Requires:	xorg-xserver-server-devel >= 1.10
 
 %description devel
@@ -106,16 +123,19 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/xorg/modules/libglamoregl.so
+%{_datadir}/X11/xorg.conf.d/glamor.conf
+
+%files libs
 %defattr(644,root,root,755)
 %doc COPYING ChangeLog README
 %attr(755,root,root) %{_libdir}/libglamor.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libglamor.so.0
-%attr(755,root,root) %{_libdir}/xorg/modules/libglamoregl.so
-%{_datadir}/X11/xorg.conf.d/glamor.conf
 
 %files devel
 %defattr(644,root,root,755)
