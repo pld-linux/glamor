@@ -3,13 +3,13 @@
 Summary:	Open-source X.org graphics common driver based on GL library
 Summary(pl.UTF-8):	Ogólny sterownik graficzny X.org o otwartych źródłach, oparty na bibliotece GL
 Name:		glamor
-Version:	0.5.1
+Version:	0.6.0
 Release:	1
 License:	MIT
 Group:		Libraries
 #Source0:	http://cgit.freedesktop.org/xorg/driver/glamor/snapshot/%{name}-%{version}.tar.gz
 Source0:	http://xorg.freedesktop.org/releases/individual/driver/%{name}-egl-%{version}.tar.bz2
-# Source0-md5:	025c4e64dbc22009a8576f76a6f6eb7c
+# Source0-md5:	b3668594675f71a75153ee52dbd35535
 Patch0:		%{name}-pc.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.freedesktop.org/wiki/Software/Glamor
