@@ -1,5 +1,5 @@
-# NOTE: glamor-0.5 and glamor-egl-0.5.0 are the same package
-# glamor-egl tarball in http://xorg.freedesktop.org/releases/individual/driver/ is broken
+# NOTE: xorg/driver/glamor.git and xorg/releases/individual/driver/glamor-egl are the same package
+# (although some glamor-egl release tarballs, e.g. 0.5.0, are broken)
 Summary:	Open-source X.org graphics common driver based on GL library
 Summary(pl.UTF-8):	Ogólny sterownik graficzny X.org o otwartych źródłach, oparty na bibliotece GL
 Name:		glamor
@@ -15,7 +15,7 @@ Patch1:		%{name}-link.patch
 URL:		http://www.freedesktop.org/wiki/Software/Glamor
 BuildRequires:	Mesa-libEGL-devel
 BuildRequires:	Mesa-libGL-devel >= 7.1.0
-BuildRequires:	Mesa-libgbm-devel
+BuildRequires:	Mesa-libgbm-devel >= 9
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake
 BuildRequires:	libdrm-devel >= 2.4.23
