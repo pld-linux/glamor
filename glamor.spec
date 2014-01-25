@@ -27,6 +27,7 @@ BuildRequires:	xorg-util-util-macros >= 1.8
 BuildRequires:	xorg-xserver-server-devel >= 1.10
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	Mesa-libGL >= 7.1.0
+Requires:	Mesa-libgbm >= 9
 Requires:	libdrm >= 2.4.23
 Requires:	pixman >= 0.21.8
 Requires:	xorg-xserver-server >= 1.10
