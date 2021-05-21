@@ -13,8 +13,8 @@ Source0:	http://xorg.freedesktop.org/releases/individual/driver/%{name}-egl-%{ve
 Patch0:		%{name}-pc.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.freedesktop.org/wiki/Software/Glamor
-BuildRequires:	Mesa-libEGL-devel
-BuildRequires:	Mesa-libGL-devel >= 7.1.0
+BuildRequires:	EGL-devel
+BuildRequires:	OpenGL-devel
 BuildRequires:	Mesa-libgbm-devel >= 9
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake
@@ -22,11 +22,12 @@ BuildRequires:	libdrm-devel >= 2.4.23
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pixman-devel >= 0.21.8
 BuildRequires:	pkgconfig
+BuildRequires:	pkgconfig(egl)
+BuildRequires:	pkgconfig(gl) >= 7.1.0
 BuildRequires:	xorg-proto-dri2proto-devel >= 2.6
 BuildRequires:	xorg-util-util-macros >= 1.8
 BuildRequires:	xorg-xserver-server-devel >= 1.10
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	Mesa-libGL >= 7.1.0
 Requires:	Mesa-libgbm >= 9
 Requires:	libdrm >= 2.4.23
 Requires:	pixman >= 0.21.8
@@ -71,7 +72,7 @@ platformę, mającą biblioteki OpenGL, gbm i drm.
 Summary:	Glamor shared library
 Summary(pl.UTF-8):	Biblioteka współdzielona Glamor
 Group:		Libraries
-Requires:	Mesa-libGL >= 7.1.0
+Requires:	OpenGL
 Requires:	pixman >= 0.21.8
 
 %description libs
@@ -85,10 +86,11 @@ Summary:	Header file for Glamor modules API
 Summary(pl.UTF-8):	Plik nagłówkowy API modułów Glamor
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	Mesa-libEGL-devel
-Requires:	Mesa-libGL-devel >= 7.1.0
+Requires:	EGL-devel
+Requires:	OpenGL-devel
 Requires:	libdrm-devel >= 2.4.23
 Requires:	pixman-devel >= 0.21.8
+Requires:	pkgconfig(gl) >= 7.1.0
 Requires:	xorg-xserver-server-devel >= 1.10
 
 %description devel
